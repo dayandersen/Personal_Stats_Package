@@ -4,6 +4,7 @@ This is a opinionated statistics package using numpy, scipy, and matplotlib. I h
 
 # TODO
 * Allow for Categorical Variables
-* Implement additional tests
+* Implement additional statistical tests
+* Implement regresssion / unit testing
 * Add csv reading/parsing functionality
 * Better format the repository so that it can more easily be expanded
