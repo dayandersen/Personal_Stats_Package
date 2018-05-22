@@ -1,3 +1,6 @@
+import numpy as numpy
+import general as gl
+
 # TODO List of tests I should add
 # 1. t-test
 # 2. f-test
@@ -9,10 +12,9 @@
 # 8. Pearson correlation coefficient
 
 def pearson_coeff_calc(data_set1, data_set2):
-    import ols_calc
-    return (ols_calc.covariance_calc(data_set1, data_set2) 
-            /  (ols_calc.std_deviation_calc(data_set1) 
-              * ols_calc.std_deviation_calc(data_set2)))
+    return (gl.covariance_calc(data_set1, data_set2) 
+            /  (gl.std_deviation_calc(data_set1) 
+              * gl.std_deviation_calc(data_set2)))
 
 # 11. Hausman test
 # 22. Wu-Haussman test
