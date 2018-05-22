@@ -2,6 +2,18 @@ import numpy as np
 import math
 import hypothesis_tests as test
 
+
+# TODO
+# * This file should only contain different types of regressions
+# * For instance Multi Linear regression
+# * Generalized Least squares regression
+# * Weighted regression
+# * Pooled OLS regression
+# * Fixed effects estimators
+# * Random effects estimators
+# * ETC
+# ! Need to move anything that is not involved in the above to another file
+
 def main():
     # dependent_data   = np.array([1.0, 3.0, 5.0, 8.0], np.float64)
     dependent_data   = np.array([115, 120, 120, 160, 145, 175, 160, 185, 210], np.float64)

@@ -15,10 +15,13 @@ def pearson_coeff_calc(data_set1, data_set2):
               * ols_calc.std_deviation_calc(data_set2)))
 
 # 11. Hausman test
+# 22. Wu-Haussman test
 # 12. Dickey Fuller test
 # 15. Pearson test
 # 16. Fisher test
 # 17. Spearman test
+# 22. Principal component analysis + Factor analysis
+
 
 # *Tests for variable correlation*
 
@@ -36,3 +39,5 @@ def pearson_coeff_calc(data_set1, data_set2):
 
 # *Tests for non-linearity of data*
 
+# *Tests for multicolinearity*
+# 21. Variance inflation factor
