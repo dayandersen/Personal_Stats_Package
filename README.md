@@ -8,3 +8,4 @@ This is a opinionated statistics package using numpy, scipy, and matplotlib. I h
 * Implement regresssion / unit testing
 * Add csv reading/parsing functionality
 * Better format the repository so that it can more easily be expanded
+* Need to create method to find critical values for the various tests
