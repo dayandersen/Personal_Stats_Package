@@ -3,7 +3,7 @@ This is a opinionated statistics package using numpy, scipy, and matplotlib. I h
 
 
 * TODO
-** llow for Categorical Variables
-** Implement additional tests
-** Add csv reading/parsing functionality
-** Better format the repository so that it can more easily be expanded
+  ** Allow for Categorical Variables
+  ** Implement additional tests
+  ** Add csv reading/parsing functionality
+  ** Better format the repository so that it can more easily be expanded
