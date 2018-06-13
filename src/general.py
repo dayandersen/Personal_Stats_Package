@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 
 def residuals_calc(coeff_matrix, independent_data, dependent_data):
 
