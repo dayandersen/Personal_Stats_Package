@@ -3,20 +3,6 @@ import math
 import src.hypothesis_tests as h_test
 import src.general
 
-
-# TODO
-# * This file should only contain different types of regressions
-# * For instance Multi Linear regression
-# * Generalized Least squares regression
-# * Weighted regression
-# * Pooled OLS regression
-# * Fixed effects estimators
-# * Random effects estimators
-# * ETC
-# ! Need to move anything that is not involved in the above to another file
-
-
-
 def multiple_ols(independent_data, dependent_data):
 
     independent_data_trans = independent_data.transpose()

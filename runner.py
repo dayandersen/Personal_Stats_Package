@@ -13,16 +13,26 @@ def main():
     column_specifier = 1
     
     N = 50
+    np.random.seed(0)
     #Normally distributed data with mean = 0 and var = 1
     a = np.random.normal(0,1,size=N)
+    np.random.seed(2)
     #Normally distributed data with with mean = 2 and var = 1
     b = np.random.normal(2,1,size=N)
 
-    t = h_test.two_sample_t_val_calc(a,b)
-    p = h_test.two_sample_t_test(a, b, .95,-1, 2)
+    t_two_samp = h_test.two_sample_t_val_calc(a,b)
+    t_result_two_samp = h_test.two_sample_t_test(a, b, .95, -1, 2)
 
-    print("t = " + str(t))
-    print("p = " + str(p))
+    print("t = " + str(t_two_samp))
+    print("Two Tailed T-Test : Reject null hypothesis? " + str(t_result_two_samp))
+
+    t_one_samp = h_test.one_sample_t_val_calc(a, 2)
+    t_result_one_samp = h_test.one_sample_t_test(a, 2, .95, 2)
+
+    print("t = " + str(t_one_samp))
+    print("One Tailed T-Test : Reject null hypothesis? " + str(t_result_one_samp))
+
+    print("F-Test : Reject null hypothesis?"h_test.f_test(a,b,.95,1))
 
     # independent_data = np.array([[1.0,2.0,4.0],
     #                              [1.0,4.0,6.0],

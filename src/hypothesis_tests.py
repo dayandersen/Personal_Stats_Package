@@ -7,6 +7,11 @@ import math
 # TODO Change 1 tailed t-test to allow for lower tailed i.e. u < m0 
 
 # 1.0 Two Sample T-Test
+# NOTE Currently assumes the variance of the two datasets is the same and both are from normal distributions
+# NOTE Calculates the one tail t-test value if tail == 1, and two tail if tail == 2
+# NOTE If df (degrees of freedom) is not passed in it assumes that degrees of freedom is the size of the two datasets - 2
+# NOTE Null hypothesis is that the two Samples have identical variances
+# NOTE Returns True if we reject null hypothesis and False if we fail to reject
 def two_sample_t_val_calc(dataset1, dataset2):
     mean1 = np.average(dataset1)
     mean2 = np.average(dataset2)
@@ -18,83 +23,78 @@ def two_sample_t_val_calc(dataset1, dataset2):
         variance1/np.size(dataset1)
     + variance2/np.size(dataset2)))
 
-# NOTE Currently assumes the variance of the two datasets is the same and both are from normal distributions
-# NOTE Calculates the one tail t-test value if tail == 1, and two tail if tail == 2
-# NOTE If df (degrees of freedom) is not passed in it assumes that degrees of freedom is the size of the two datasets - 2
-# NOTE Null hypothesis is that the two Samples have identical variances
-# NOTE Returns True if we reject null hypothesis and False if we fail to reject
-
 def two_sample_t_test(dataset1, dataset2, alpha, df, tail):
     degrees_free = 1
-
+    
     if df == -1:
         degrees_free = np.size(dataset1) + np.size(dataset2) - 2
-    
     else:
         degrees_free = df
 
     t = two_sample_t_val_calc(dataset1, dataset2) 
-    crit_val = 1
-    
+    crit_val = 0
+
     if (tail == 2):
         crit_val = stats.t.ppf((1-alpha)/2, degrees_free)
     else:
         crit_val = stats.t.ppf(1-alpha, degrees_free)
 
-    print("I am the crit "+str(crit_val))
-
     return (abs(t) > abs(crit_val))
-
-# ! t = Mean of group x - Mean of group y
-# ! over the sqrt of
-# ! std_devx squared over number of observations in x
-# ! plus std_devy squared over number of observations in y
 
 
 # 1.1 One Sample T-Test
+# Null hypothesis is that the sample mean is the same as the test_mean 
+# True means we reject null hypothesis and False means we fail to reject
 def one_sample_t_val_calc(dataset, test_mean):
     sample_mean = np.average(dataset)
     sample_std_dev = gl.std_deviation_calc(dataset)
-    
+    dataset_size = np.size(dataset)
+
     return ((sample_mean - test_mean) /
-            (sample_std_dev / math.sqrt(dataset.size())))
+            (sample_std_dev / math.sqrt(dataset_size)))
 
-
-# Null hypothesis is that the sample mean is the same as the test_mean 
-# True means we reject null hypothesis and False means we fail to reject
 
 def one_sample_t_test(dataset, test_mean, alpha, tail):
     t_val = one_sample_t_val_calc(dataset, test_mean)
     crit_val = 0
+    dataset_size = np.size(dataset)
+
     if (tail == 2):
-       crit_val = stats.t.ppf((1-alpha)/2, (dataset.size()-1))
+       crit_val = stats.t.ppf((1-alpha)/2, (dataset_size-1))
     else:
-        crit_val = stats.t.ppf(1-alpha, (dataset.size()-1))
+        crit_val = stats.t.ppf(1-alpha, (dataset_size-1))
 
     return (abs(t_val) > abs(crit_val)) 
 
 # 2. f-test
 
-# def f_test():
+def f_test(dataset1, dataset2, alpha, tail):
+    variance1 = gl.variance_calc(dataset1)
+    variance2 = gl.variance_calc(dataset2)
+    f_val = 0
+    crit_val = 0
+    df_top = 0
+    df_bot = 0
 
+    if (variance1 > variance2):
+        f_val = variance1/variance2
+        df_top = np.size(dataset1)-1
+        df_bot = np.size(dataset2)-1
+    else:
+        f_val = variance2/variance1
+        df_top = np.size(dataset2)-1
+        df_bot = np.size(dataset1)-1
 
-# ! f = explained variance / unexplained variance
+    if (tail == 2):
+        crit_val = stats.f.ppf(alpha+((1-alpha)/2), df_top, df_bot)
+    else:
+        crit_val = stats.f.ppf(alpha,df_top,df_bot)
 
-# ! explained variance = 
-# ! sum i=1 to K 
-# ! of number of observations in ith group (ni)
-# ! times the sample mean in the ith group (ybari)
-# ! minus the overall mean of the data (ybar)
-# ! squared
-# ! over (K-1) where K is the number of groups
+    print(crit_val)
+    print("whaaaa "+str(f_val))
 
-# ! unexplained variance = 
-# ! sum i = 1 to K
-# ! of sum of j = 1 to ni
-# ! of the jth observation in the ith 
-# ! minus the sampel mean in the ith group 
-# ! squared
-# ! over (N-K) where N is total number of observations
+    return (abs(f_val) > abs(crit_val))
+    
 
 # 3. z-test
 # 4. Tukey-test

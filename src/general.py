@@ -47,7 +47,7 @@ def variance_calc(dataset):
     for i in dataset:
         variance += ((i - avg) * (i - avg))
 
-    variance = variance * (1.0 / (len(dataset)-1))
+    variance = variance * (1.0 / (len(dataset)))
 
     return variance
 
