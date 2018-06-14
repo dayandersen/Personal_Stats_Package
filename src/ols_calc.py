@@ -1,7 +1,7 @@
 import numpy as np
 import math
-import hypothesis_tests as test
-import general
+import src.hypothesis_tests as h_test
+import src.general
 
 
 # TODO
@@ -39,6 +39,3 @@ def multiple_ols(independent_data, dependent_data):
 # def robust_least_squares():
 # def ARIMA_calc():
 # def VAR_calc():
-
-
-main()
