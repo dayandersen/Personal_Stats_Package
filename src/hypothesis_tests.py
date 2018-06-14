@@ -90,9 +90,6 @@ def f_test(dataset1, dataset2, alpha, tail):
     else:
         crit_val = stats.f.ppf(alpha,df_top,df_bot)
 
-    print(crit_val)
-    print("whaaaa "+str(f_val))
-
     return (abs(f_val) > abs(crit_val))
     
 
@@ -100,9 +97,10 @@ def f_test(dataset1, dataset2, alpha, tail):
 # 4. Tukey-test
 # 5. ANOVA
 # 6. Pearson's chi-squared test
+# def chi_squared():
 # 7. G-test
-# 8. Pearson correlation coefficient
 
+# 8. Pearson correlation coefficient
 def pearson_coeff_calc(dataset1, dataset2):
     return (gl.covariance_calc(dataset1, dataset2) 
             /  (gl.std_deviation_calc(dataset1) 
@@ -129,7 +127,18 @@ def pearson_coeff_calc(dataset1, dataset2):
 # *Tests for Autocorrelation*
 # 13. Ljung-Box Q Test
 # 14. Breusch Godfrey test
+
 # 20. Durbin Watson test
+def durbin_watson_calc(residuals):
+    d_stat = 0
+    sum_sqr_resid = 0
+    for i in range(len(residuals)):
+        
+        sum_sqr_resid += (residuals[i] * residuals[i])
+        
+        if (i > 1):
+            d_stat += (residuals[i] - residuals[i-1]) * (residuals[i] - residuals[i-1])
+    return (d_stat / sum_sqr_resid)
 
 # *Tests for non-linearity of data*
 
