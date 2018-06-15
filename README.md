@@ -7,7 +7,7 @@ To download the requirements for this project you can use pip with the following
 * pip install -r requirements.txt
 
 # Test and run
-
+With the packages installed and python 3.5 all that should need to be done is type python runner.py. This file is a brief showing of some of the functionality currently avaible in the project. This will be expanded in the future to be a cli with help function support and dynamic data loading.
 # TODO
 * Allow for Categorical Variables
 * Implement additional statistical tests
